@@ -121,7 +121,7 @@ include_once "menu.php";
        
 
     include_once("script/db.php");
-    $result = mysql_query ("SELECT * FROM post_h", $connection);
+    $result = mysqli_query ($connection, "SELECT * FROM post_h");
 ?>
     <table class='table table-striped table-bordered'>
        <tr>
@@ -134,7 +134,7 @@ include_once "menu.php";
         <form method='post' action='script/delete_accaunt_post_h.php'>
             <button type='submit' class='btn btn-danger'> Удалить пост </button>
           
-             <?php   while ($myrow = mysql_fetch_assoc($result)) { ?>
+             <?php   while ($myrow = mysqli_fetch_assoc($result)) { ?>
     
 
 
@@ -185,7 +185,7 @@ include_once "menu.php";
        
 
     include_once("script/db.php");
-    $result = mysql_query ("SELECT * FROM consumer_key_and_other", $connection);
+    $result = mysqli_query ($connection, "SELECT * FROM consumer_key_and_other");
 ?>
     <table class='table table-striped table-bordered'>
        <tr>
@@ -199,7 +199,7 @@ include_once "menu.php";
         <form method='post' action='script/delete_consumer_key.php'>
             <button type='submit' class='btn btn-danger'> Удалить ключи </button>
           
-             <?php   while ($myrow = mysql_fetch_assoc($result)) { ?>
+             <?php   while ($myrow = mysqli_fetch_assoc($result)) { ?>
     
 
 
