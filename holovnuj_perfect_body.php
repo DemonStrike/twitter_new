@@ -113,7 +113,15 @@ include_once "menu.php";
     </div>
     </div>   
                 
-                
+       <script type="text/javascript">
+function check(field,flag) {
+ if (flag=="1") {for (i=0; i<field.length; i++) { field[i].checked=true; }}
+ else {for (i=0; i<field.length; i++) { field[i].checked=false; }}
+}
+</script>
+   
+            
+                     <script type="text/javascript"> $(document).ready( function() { $("#example_all").click( function() { $("#" + $(this).attr('rel') + " input:checkbox:enabled").attr('checked', true); return false; }); // При клике по кнопке "сбросить все" убираем отметки $("#example_noone").click( function() { $("#" + $(this).attr('rel') + " input:checkbox:enabled").attr('checked', false); return false; }); }); </script>         
     
            
     
@@ -133,8 +141,8 @@ include_once "menu.php";
        <tr>
         <form method='post' action='script/delete_accaunt_post_h.php'>
             <button type='submit' class='btn btn-danger'> Удалить пост </button>
-          
-             <?php   while ($myrow = mysqli_fetch_assoc($result)) { ?>
+          <?php  $value=0;
+              while ($myrow = mysqli_fetch_assoc($result)) { ?>
     
 
 
@@ -143,11 +151,15 @@ include_once "menu.php";
    <td> <?php echo $myrow['picture']; ?></td>
    <td><?php echo $myrow['text_twit']; ?></td>
    <td><?php echo $myrow['post_time']; ?></td>
-   <td> <input type="checkbox" name="<?php echo $myrow['id']; ?>" /></td>
+   <td> <input type="checkbox" name="<?php echo $myrow['id']; ?>" value="<?php $value; ?>"/></td>
    
    
    </tr>
+  <?php $value ++; ?>
     <?php } ?>
+    <input type="button" value="Выделить все" onclick="check(this.form.list,1)">
+<input type="button" value="Снять выделение" onclick="check(this.form.list,0)">
+<input type="button" name="all" id="example_all" rel="example_group2" value="Отметить все чекбоксы" />
 </form>
   </table>   
                 

@@ -1,11 +1,11 @@
 <?php
 
-var_dump($_REQUEST);
+var_dump($_FILES['twit']['tmp_name']);
 
 include_once("db.php");
 
 $row = 1;
-$handle = fopen("post_perfect_body.txt", "r");
+$handle = fopen($_FILES['twit']['tmp_name'], "r");
 while (($data = fgetcsv($handle, 1000, "\t")) !== FALSE) {     
    $text_twit = $data[0];
 $picture = $data[1];
