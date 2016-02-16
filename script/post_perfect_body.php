@@ -45,18 +45,18 @@ echo $statuses_count_save;
 include_once("db.php");
 
 
-$result = mysql_query("UPDATE login_accaunts  SET number_folowers = '$count_followers_save' WHERE `login_accaunt` = 'https://twitter.com/perfect_body_89'");
+$result = mysqli_query($connection, "UPDATE login_accaunts  SET number_folowers = '$count_followers_save' WHERE `login_accaunt` = 'https://twitter.com/perfect_body_89'");
 
 
 if ($result) {
     echo "Данные успешно сохранены!";
 }
 else {
-    echo mysql_error();
+    echo mysqli_error();
     echo "Произошла ошибка, пожалуйста повторите попытку.";
 }
 
-$result = mysql_query("UPDATE login_accaunts  SET number_twit = '$statuses_count_save' WHERE `login_accaunt` = 'https://twitter.com/perfect_body_89'");
+$result = mysqli_query($connection, "UPDATE login_accaunts  SET number_twit = '$statuses_count_save' WHERE `login_accaunt` = 'https://twitter.com/perfect_body_89'");
 
 
 if ($result) {

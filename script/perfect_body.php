@@ -2,7 +2,7 @@
 
 include_once("db.php");
     
-$result = mysql_query("UPDATE login_accaunts  SET number_folowers = '14'");
+$result = mysqli_query($connection, "UPDATE login_accaunts  SET number_folowers = '14'");
 if ($result) {
     echo "Данные успешно сохранены!";
 }

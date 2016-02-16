@@ -60,7 +60,7 @@ include_once "menu.php";
               </div>
                     <div class="col-md-3">
                     
-               <form enctype="multipart/form-data" method="post" action="script/post_h.php">
+               <form enctype="multipart/form-data" method="post" action="script/download_txt_to_sql.php">
    <p>Загрузите файл с твитами</p>
    <p><input type="file" name="twit"></p>
    <button class="btn btn-success" type="submit">Загрузить</button>
