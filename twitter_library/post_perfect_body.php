@@ -3,9 +3,9 @@ ini_set('display_errors', 1);
 require_once('TwitterAPIExchange.php');
 
 /** Set access tokens here - see: https://dev.twitter.com/apps/ **/
-include_once("db.php");
- $result = mysql_query ("SELECT * FROM consumer_key_and_other", $connection);
-          $myrow = mysql_fetch_assoc($result);
+include_once("../script/db.php");
+ $result = mysqli_query ( $connection, "SELECT * FROM consumer_key_and_other");
+          $myrow = mysqli_fetch_assoc($result);
 
 $settings = array(
     'oauth_access_token' => "$myrow[oauth_access_token]",
@@ -18,7 +18,7 @@ $settings = array(
 
 
 /** URL for REST request, see: https://dev.twitter.com/docs/api/1.1/ **/ 
-$url = 'https://upload.twitter.com/1.1/media/upload.json';
+$url = 'http://upload.twitter.com/1.1/media/upload.json';
 $requestMethod = 'POST';
 $postfields = array ('media' => 'http://designwork.com.ua/twitter/ferma/ferma/script/iceberg.png');
 
@@ -51,17 +51,5 @@ $response = $twitter->setPostfields($postfields)
 var_dump ($response);
 **/ 
 
-
-
-
-
-
-
-
-
-
-    
-/** Perform a GET request and echo the response **/
-/** Note: Set the GET field BEFORE calling buildOauth(); 
 
 
