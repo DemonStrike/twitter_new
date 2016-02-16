@@ -16,11 +16,11 @@ $settings = array(
 
 
 
-
 /** URL for REST request, see: https://dev.twitter.com/docs/api/1.1/ **/ 
-$url = 'http://upload.twitter.com/1.1/media/upload.json';
+$url = 'http://upload.twitter.com/1.1/media/upload.json';        
+base64_encode($img) = file_get_contents ('http://designwork.com.ua/twitter/ferma/ferma/script/iceberg.png');   
 $requestMethod = 'POST';
-$postfields = array ('media' => 'http://designwork.com.ua/twitter/ferma/ferma/script/iceberg.png');
+$postfields = array ('media_data' => $img);
 
 
 /** Perform a POST request and echo the response **/ 

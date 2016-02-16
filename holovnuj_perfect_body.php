@@ -150,7 +150,7 @@ include_once "menu.php";
    </tr>
   <?php $value ++; ?>
     <?php } ?>
-<input type="button" name="all" id="delete_all" rel="check_box" value="Отметить все чекбоксы" />
+<input class="btn btn-primary" type="button" name="all" id="delete_all" rel="check_box" value="Отметить все чекбоксы" />
 </form>
  <script>
     $('#delete_all').click(function(){
