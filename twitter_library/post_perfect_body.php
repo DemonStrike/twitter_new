@@ -4,21 +4,21 @@ require_once('TwitterAPIExchange.php');
 
 /** Set access tokens here - see: https://dev.twitter.com/apps/ **/
 include_once("../script/db.php");
-$result = mysqli_query ( $connection, "SELECT * FROM consumer_key_and_other");
+$result = mysqli_query($connection, "SELECT * FROM consumer_key_and_other");
 $myrow = mysqli_fetch_assoc($result);
 
 $settings = array(
-    'oauth_access_token' => "$myrow[oauth_access_token]",
-    'oauth_access_token_secret' => "$myrow[oauth_access_token_secret]",
-    'consumer_key' => "$myrow[consumer_key]",
-    'consumer_secret' => "$myrow[consumer_secret]"
+    'oauth_access_token' => $myrow['oauth_access_token'],
+    'oauth_access_token_secret' => $myrow['oauth_access_token_secret'],
+    'consumer_key' => $myrow['consumer_key'],
+    'consumer_secret' => $myrow['consumer_secret']
 );
 
 
 
 /** URL for REST request, see: https://dev.twitter.com/docs/api/1.1/ **/
 $url = 'http://upload.twitter.com/1.1/media/upload.json';
-$img = file_get_contents ('http://designwork.com.ua/twitter/ferma/ferma/script/iceberg.png');
+$img = file_get_contents('http://designwork.com.ua/twitter/ferma/ferma/script/iceberg.png');
 $requestMethod = 'POST';
 $postfields = array ('media_data' => base64_encode($img));
 
@@ -48,9 +48,12 @@ $postfields = array ('status' => 'test1', 'media_ids' => $img_cod);
 $twitter = new TwitterAPIExchange($settings);
 $response = $twitter->setPostfields($postfields)
     ->buildOauth($url, $requestMethod)
-    ->performRequest();
+    ->performRequest( true,
 
-var_dump ($response);
+        array(CURLOPT_SSL_VERIFYHOST => 0,
+            CURLOPT_SSL_VERIFYPEER => 0));
+
+var_dump($response);
 
 
 
