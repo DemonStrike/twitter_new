@@ -15,13 +15,15 @@ $settings = array(
 );
 
 
+$result = mysqli_query($connection, "SELECT * FROM post_h");
+$myrow = mysqli_fetch_assoc($result);
+
 
 /** URL for REST request, see: https://dev.twitter.com/docs/api/1.1/ **/
 $url = 'http://upload.twitter.com/1.1/media/upload.json';
-$img = file_get_contents('http://designwork.com.ua/twitter/ferma/ferma/script/iceberg.png');
+$img = file_get_contents($myrow['picture']);
 $requestMethod = 'POST';
 $postfields = array ('media_data' => base64_encode($img));
-
 
 /** Perform a POST request and echo the response **/
 $twitter = new TwitterAPIExchange($settings);
@@ -41,7 +43,7 @@ $img_cod = $response->media_id;
 /** URL for REST request, see: https://dev.twitter.com/docs/api/1.1/ **/
 $url = 'https://api.twitter.com/1.1/statuses/update.json';
 $requestMethod = 'POST';
-$postfields = array ('status' => 'test1', 'media_ids' => $img_cod);
+$postfields = array ('status' => $myrow['text_twit'], 'media_ids' => $img_cod);
 
 
 /** Perform a POST request and echo the response **/
@@ -53,7 +55,18 @@ $response = $twitter->setPostfields($postfields)
         array(CURLOPT_SSL_VERIFYHOST => 0,
             CURLOPT_SSL_VERIFYPEER => 0));
 
-var_dump($response);
+$id = $myrow['id'];
+$result = mysqli_query ($connection, "DELETE FROM post_h WHERE id='$id'");
+if ($result) {
+    echo "Данные успешно сохранены!";
+
+}
+else {
+    echo mysql_error();
+    echo "Произошла ошибка, пожалуйста повторите попытку.";
+}
+
+
 
 
 

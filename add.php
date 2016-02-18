@@ -91,7 +91,7 @@ include_once("script/db.php");
        
        
        
-       $result = mysql_query ("SELECT * FROM login_accaunts", $connection);
+       $result = mysqli_query ($connection, "SELECT * FROM login_accaunts");
     
     
      echo "<table class='table table-striped table-bordered'>
@@ -109,14 +109,14 @@ include_once("script/db.php");
             </button>";
           
           
-while ($myrow = mysql_fetch_assoc($result)) {
+while ($myrow = mysqli_fetch_assoc($result)) {
        
     echo 
        
 
         
       "<tr>
-        <td align='center'> <a  href= 'ferma.php'><span class='glyphicon glyphicon-send'></span></a></td>
+        <td align='center'> <a  href='holovnuj_perfect_body.php'><span class='glyphicon glyphicon-send'></span></a></td>
    <td> <a target=_blank href= ". ($myrow[login_accaunt]) .">". ($myrow[login_accaunt]) . "</a> </td>
    <td>" . ($myrow[number_twit]) . "</td>
    <td>" . ($myrow[number_folowers]) . "</td>
