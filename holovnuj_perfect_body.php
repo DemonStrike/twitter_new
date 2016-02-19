@@ -76,11 +76,9 @@ include_once "menu.php";
     
               <br>
   </div>
-   
-   
-   
-   
-   
+  
+ 
+
     
     <div class="modal" id="modal-1">
         <div class="modal-dialog">
@@ -141,7 +139,7 @@ include_once "menu.php";
 
         
       <tr>
-   <td> <?php echo $myrow['picture']; ?></td>
+   <td class='height_td'> <img src= <?php echo $myrow['picture']; ?>> </td>
    <td><?php echo $myrow['text_twit']; ?></td>
    <td><?php echo $myrow['post_time']; ?></td>
    <td> <input type="checkbox" name="<?php echo $myrow['id']; ?>" value="<?php echo $value; ?>"/></td>
