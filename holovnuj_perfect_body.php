@@ -139,8 +139,7 @@ include_once "menu.php";
 
         
       <tr>
-   <td class='height_td'> <img src= <?php echo $myrow['picture']; ?>> </td>
-   <td><?php echo $myrow['text_twit']; ?></td>
+<td> <img class='height_td' src= <?php echo $myrow['picture']; ?>> </td>   <td><?php echo $myrow['text_twit']; ?></td>
    <td><?php echo $myrow['post_time']; ?></td>
    <td> <input type="checkbox" name="<?php echo $myrow['id']; ?>" value="<?php echo $value; ?>"/></td>
    
@@ -171,6 +170,7 @@ include_once "menu.php";
                 <div class="tab-pane fade" id="tab_3"><br>
                 
                   <div class="row">
+                  <h3>Введіть свої секрети і всяке таке?</h3>
    <div class="col-md-3">
    
       <br>
@@ -195,6 +195,7 @@ include_once "menu.php";
 ?>
     <table class='table table-striped table-bordered'>
        <tr>
+            <th>user_name_twitter</th>
             <th>oauth_access_token</th>
             <th>oauth_access_token_secret</th>
             <th>consumer_key</th>
@@ -211,6 +212,7 @@ include_once "menu.php";
 
         
       <tr>
+      <td> <?php echo $myrow['user_name_twitter']; ?></td>
    <td> <?php echo $myrow['oauth_access_token']; ?></td>
    <td><?php echo $myrow['oauth_access_token_secret']; ?></td>
    <td><?php echo $myrow['consumer_key']; ?></td>
@@ -238,6 +240,8 @@ include_once "menu.php";
                 <form method="post" action="script/consumer_key.php">
                 <div class="modal-body">
                     <div class="form-group">
+                    <h4> user_name_twitter: </h4>  <textarea name="user_name_twitter" type="text" class="form-control" placeholder="user_name_twitter">  </textarea>
+<br>     
        <h4> oauth_access_token: </h4>  <textarea name="oauth_access_token" type="text" class="form-control" placeholder="oauth_access_token">  </textarea>
 <br>                   
                       <h4> oauth_access_token_secret: </h4>  <textarea name="oauth_access_token_secret" type="text" class="form-control" placeholder="oauth_access_token_secret">  </textarea>
@@ -262,7 +266,82 @@ include_once "menu.php";
                 
                 <h3>Які аканути ретвітити?</h3>
                 
-                
+                   <div class="col-md-3">
+   
+      <br>
+             <br>
+ 
+    
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal_nick_accaunt_retwit">
+                 Добавити акаунти
+            </button>
+             
+              <br>
+           </div>
+    
+    
+              <br>
+              
+                 <?php
+       
+
+    include_once("script/db.php");
+    $result = mysqli_query ($connection, "SELECT * FROM consumer_key_and_other");
+?>
+    <table class='table table-striped table-bordered'>
+       <tr>
+            <th>Акаунти для ретвітів</th>
+            <th></th>
+       </tr>
+       <tr>
+        <form method='post' action='script/delete_consumer_key.php'>
+            <button type='submit' class='btn btn-danger'> Удалити акаунти </button>
+          
+             <?php   while ($myrow = mysqli_fetch_assoc($result)) { ?>
+    
+
+
+        
+      <tr>
+   <td> <?php echo $myrow['nick_accaunt_retwit']; ?></td> 
+   <td> <input type="checkbox" name="<?php echo $myrow['id']; ?>" /></td>
+   
+   
+   </tr>
+    <?php } ?>
+</form>
+  </table>   
+          
+         
+  </div>
+    
+    <div class="modal" id="modal_nick_accaunt_retwit">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Введите данные</h4>
+                    <button class="close" type="button" data-dismiss="modal">
+                    <i class="fa fa-close"></i>
+                    </button>
+                </div>
+                <form method="post" action="script/settings.php">
+                <div class="modal-body">
+                    <div class="form-group">
+       <h4> nick_accaunt_retwit: </h4>  <textarea name="nick_accaunt_retwit" type="text" class="form-control" placeholder="nick_accaunt_retwit">  </textarea>
+<br>                 
+                <button class="btn btn-success" type="submit"  >Добавить</button>
+                </div>
+                 </div>
+                </form>
+                <div class="modal-footer">
+                    <button class="btn btn-danger" type="button"  data-dismiss="modal">Отмена</button>
+                    
+                </div>
+           
+        </div>
+    </div>
+    </div> 
+    
                 
                 </div>
             </div>
