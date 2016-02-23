@@ -291,6 +291,7 @@ include_once "menu.php";
     <table class='table table-striped table-bordered'>
        <tr>
             <th>Акаунти для ретвітів</th>
+            <th>Хештеги для ретвітів</th>
             <th></th>
        </tr>
        <tr>
@@ -304,6 +305,7 @@ include_once "menu.php";
         
       <tr>
    <td> <?php echo $myrow['nick_accaunt_retwit']; ?></td> 
+   <td> <?php echo $myrow['hashtag_retwit']; ?></td> 
    <td> <input type="checkbox" name="<?php echo $myrow['id']; ?>" /></td>
    
    
@@ -328,7 +330,9 @@ include_once "menu.php";
                 <div class="modal-body">
                     <div class="form-group">
        <h4> nick_accaunt_retwit: </h4>  <textarea name="nick_accaunt_retwit" type="text" class="form-control" placeholder="nick_accaunt_retwit">  </textarea>
-<br>                 
+<br>        
+               <h4> hashtag_retwit: </h4>  <textarea name="hashtag_retwit" type="text" class="form-control" placeholder="hashtag_retwit">  </textarea>
+<br>             
                 <button class="btn btn-success" type="submit"  >Добавить</button>
                 </div>
                  </div>

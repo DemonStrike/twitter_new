@@ -4,7 +4,7 @@ require_once('TwitterAPIExchange.php');
 
 /** Set access tokens here - see: https://dev.twitter.com/apps/ **/
 include_once("../script/db.php");
-$result = mysqli_query($connection, "SELECT * FROM consumer_key_and_other");
+$result = mysqli_query($connection, "SELECT * FROM consumer_key_and_other  user_name_twitter = 'perfect_body_89'");
 $myrow = mysqli_fetch_assoc($result);
 
 $settings = array(
@@ -39,7 +39,6 @@ $img_cod = $response->media_id;
 
 
 
-
 /** URL for REST request, see: https://dev.twitter.com/docs/api/1.1/ **/
 $url = 'https://api.twitter.com/1.1/statuses/update.json';
 $requestMethod = 'POST';
@@ -56,6 +55,9 @@ $response = $twitter->setPostfields($postfields)
             CURLOPT_SSL_VERIFYPEER => 0));
 
 $id = $myrow['id'];
+
+var_dump ($response);
+
 $result = mysqli_query ($connection, "DELETE FROM post_h WHERE id='$id'");
 if ($result) {
     echo "Данные успешно сохранены!";
